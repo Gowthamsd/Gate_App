@@ -40,6 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
           );
           break;
         case 'Security':
+          // Add navigation for Security role
           break;
         case 'Manager':
           Navigator.pushReplacement(
@@ -48,6 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
           );
           break;
         case 'Admin':
+          // Add navigation for Admin role
           break;
         default:
           ScaffoldMessenger.of(context).showSnackBar(
@@ -64,121 +66,150 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 50,
-            ),
-            const Center(
-              child: Text(
-                "GATE APP",
-                style: TextStyle(
-                    fontSize: 35,
-                    color: AppColors.secondary,
-                    fontWeight: FontWeight.bold),
+      body: Stack(
+        children: [
+          // Background Image
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    "assets/images/background2.jpg"), // Add your image path here
+                fit: BoxFit.cover,
               ),
             ),
-
-            const SizedBox(
-              height: 5,
-            ),
-
-            const Center(
-              child: Text("Login To The Application"),
-            ),
-
-            const SizedBox(
-              height: 50,
-            ),
-
-            const Text(
-              "Select Role",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            DropdownButtonFormField<String>(
-              value: selectedRole,
-              items: roles.map((role) {
-                return DropdownMenuItem(
-                  value: role,
-                  child: Text(role),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedRole = value!;
-                });
-              },
-              decoration: InputDecoration(
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide:
-                      const BorderSide(color: AppColors.textFieldBorder),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-
-            // Employee ID Field
-            const Text(
-              "Employee ID",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            TextField(
-              controller: employeeIdController,
-              decoration: InputDecoration(
-                hintText: "Enter your Employee ID",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-
-            // Password Field
-            const Text(
-              "Password",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            TextField(
-              controller: passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: "Enter your Password",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Forgot Password?',
-                  style: TextStyle(
-                    color: AppColors.secondary,
+          ),
+          // Login Form
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 80),
+                  const Center(
+                    child: Text(
+                      "GATE APP",
+                      style: TextStyle(
+                          fontSize: 35,
+                          color: AppColors.secondary,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 5),
+                  const Center(
+                    child: Text(
+                      "Login To The Application",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white, // Adjust color for readability
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 50),
+                  const Text(
+                    "Select Role",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
+                  const SizedBox(height: 8),
+                  DropdownButtonFormField<String>(
+                    value: selectedRole,
+                    items: roles.map((role) {
+                      return DropdownMenuItem(
+                        value: role,
+                        child: Text(role),
+                      );
+                    }).toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedRole = value!;
+                      });
+                    },
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.8),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide:
+                            const BorderSide(color: AppColors.textFieldBorder),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Employee ID Field
+                  const Text(
+                    "Employee ID",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.secondary),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: employeeIdController,
+                    decoration: InputDecoration(
+                      hintText: "Enter your Employee ID",
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.8),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+
+                  // Password Field
+                  const Text(
+                    "Password",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: "Enter your Password",
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.8),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'Forgot Password?',
+                        style: TextStyle(
+                          color: AppColors.secondary,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+
+                  // Login Button
+                  Center(
+                    child: CommonButton(
+                      text: "Login",
+                      onPressed: () => _handleLogin(context),
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 24),
-
-            // Login Button
-            Center(
-              child: CommonButton(
-                  text: "Login", onPressed: () => _handleLogin(context)),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

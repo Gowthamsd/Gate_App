@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primary = Color.fromRGBO(154, 126, 111, 1);
-  static const Color secondary = Color.fromRGBO(84, 71, 63, 1);
-  static const Color background = Color.fromRGBO(233, 238, 217, 1);
-  static const Color textFieldBorder = Color.fromRGBO(154, 126, 111, 1);
+  static const Color primary = Color.fromRGBO(96, 139, 193, 1);
+  static const Color secondary = Color.fromRGBO(19, 62, 135, 1);
+  static const Color background = Color.fromRGBO(243, 243, 224, 1);
+  static const Color textFieldBorder = Color.fromRGBO(203, 220, 235, 1);
   static const Color buttonText = Colors.white;
 }
